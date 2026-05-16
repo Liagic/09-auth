@@ -114,7 +114,7 @@ export default function NoteForm() {
               <label htmlFor={`${fieldId}-tag`}>Tag</label>
               <Field
                 id={`${fieldId}-tag`}
-                name="categoryId"
+                name="tag"
                 as="select"
                 className={css.select}
                 onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
