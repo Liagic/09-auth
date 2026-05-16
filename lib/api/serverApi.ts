@@ -69,18 +69,13 @@ export const getMe = async (): Promise<User> => {
   return data;
 };
 
-export const checkSession = async (): Promise<boolean> => {
+export const checkSession = async () => {
   const cookieStore = await cookies();
 
-  try {
-    const res = await nextServer.get<User | null>('/auth/session', {
-      headers: {
-        Cookie: cookieStore.toString(),
-      },
-    });
-
-    return Boolean(res.data);
-  } catch {
-    return false;
-  }
+  const res = await nextServer.get<User>('/auth/session', {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return res;
 };
