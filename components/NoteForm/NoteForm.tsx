@@ -4,7 +4,7 @@ import { useId } from 'react';
 import { Formik, Form, Field, type FormikHelpers, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote } from '@/lib/api';
+import { createNote } from '@/lib/api/clientApi';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
 interface NoteFormValues {
@@ -19,7 +19,7 @@ const NoteFormSchema = Yup.object().shape({
     .max(50, 'Title is too long')
     .required('Title is required'),
   content: Yup.string().max(500, 'Content is too long'),
-  tag: Yup.string()
+  categoryId: Yup.string()
     .oneOf(
       ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'],
       'Invalid tag value'
@@ -114,7 +114,7 @@ export default function NoteForm() {
               <label htmlFor={`${fieldId}-tag`}>Tag</label>
               <Field
                 id={`${fieldId}-tag`}
-                name="tag"
+                name="categoryId"
                 as="select"
                 className={css.select}
                 onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {

@@ -1,4 +1,4 @@
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/clientApi';
 import NotesClient from './Notes.client';
 import { Metadata } from 'next';
 import {
@@ -45,7 +45,7 @@ const NotesByCategory = async ({ params }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient tag={normalizedTag} />
+      <NotesClient categoryId={normalizedTag} />
     </HydrationBoundary>
   );
 };

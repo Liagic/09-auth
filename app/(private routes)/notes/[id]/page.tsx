@@ -1,12 +1,11 @@
 import { Metadata } from 'next';
-import { getSingleNote } from '@/lib/api';
+import { getSingleNote } from '@/lib/api/serverApi';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import NoteDetailsClient from '@/app/notes/[id]/NoteDetails.client';
-
+import NoteDetailsClient from './NoteDetails.client';
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const { title, content } = await getSingleNote(id);

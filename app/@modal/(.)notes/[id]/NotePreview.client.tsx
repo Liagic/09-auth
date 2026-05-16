@@ -5,7 +5,7 @@ import Modal from '@/components/Modal/Modal';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import Loader from '@/components/Loader/Loader';
 import css from './NotePreview.module.css';
-import { getSingleNote } from '@/lib/api';
+import { getSingleNote } from '@/lib/api/clientApi';
 
 export default function NotePreview() {
   const router = useRouter();

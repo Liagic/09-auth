@@ -1,4 +1,4 @@
-import { getSingleNote } from '@/lib/api';
+import { getSingleNote } from '@/lib/api/clientApi';
 import NotePreview from './NotePreview.client';
 import {
   dehydrate,

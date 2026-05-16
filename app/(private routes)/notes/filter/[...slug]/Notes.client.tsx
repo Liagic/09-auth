@@ -1,6 +1,6 @@
 'use client';
 import css from './Notes.module.css';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/clientApi';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { keepPreviousData } from '@tanstack/react-query';
@@ -12,9 +12,9 @@ import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import Link from 'next/link';
 interface NotesClientProps {
-  tag: string;
+  categoryId: string;
 }
-function NotesClient({ tag }: NotesClientProps) {
+function NotesClient({ categoryId }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -23,9 +23,9 @@ function NotesClient({ tag }: NotesClientProps) {
     setCurrentPage(1);
   }, 1000);
   const { data, isSuccess, isLoading, isError } = useQuery({
-    queryKey: ['notes', searchQuery, currentPage, tag],
+    queryKey: ['notes', searchQuery, currentPage, categoryId],
     queryFn: () => {
-      return fetchNotes(searchQuery, currentPage, 12, tag);
+      return fetchNotes(searchQuery, currentPage, 12, categoryId);
     },
     staleTime: 1000 * 60 * 5,
     placeholderData: keepPreviousData,

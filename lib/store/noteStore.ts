@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { CreateNote } from '../api';
+import { CreateNote } from '@/lib/api/clientApi';
 import { persist } from 'zustand/middleware';
 type NoteDraftStore = {
   draft: CreateNote;
